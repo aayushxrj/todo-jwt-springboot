@@ -44,10 +44,11 @@ public class User implements UserDetails {
     private List<Authority> authorities;
 
     // private List of todos
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Todo> todos;
 
     // Default Constructor fOR JPA
     public User() {}
-
 
 
     @Override

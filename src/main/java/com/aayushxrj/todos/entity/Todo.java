@@ -25,16 +25,20 @@ public class Todo {
     private boolean complete;
 
     //private User owner
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
 
     //Default constructor (required by JPA)
     public Todo() {}
 
-    public Todo(boolean complete, int priority, String description, String title, long id) {
+    public Todo(boolean complete, int priority, String description, String title, long id, User owner) {
         this.complete = complete;
         this.priority = priority;
         this.description = description;
         this.title = title;
         this.id = id;
+        this.owner = owner;
     }
 
     //Getters and Setters
@@ -77,5 +81,13 @@ public class Todo {
 
     public void setComplete(boolean complete) {
         this.complete = complete;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
